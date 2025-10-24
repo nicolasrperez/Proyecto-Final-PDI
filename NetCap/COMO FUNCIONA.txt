@@ -1,0 +1,33 @@
+COMO FUNCIONA 
+Que aplicaciones hay que descargar para que el programa funcione y paso a paso para generar captura y abrir el archivo resultante con Wireshark. *lo que esta dentro de comillas simples('') son líneas que se escriben en powersell.
+
+1) Aplicaciones necesarias: Python, Npcap y Wireshark.
+
+2) Archivos del proyecto (ubicación sugerida):
+-Carpeta del proyecto: C:\NetCap
+-Archivo principal: netcap.py (usa Scapy para capturar)
+-Carpeta de configuraciones: C:\NetCap\configs\config.ini
+-Entorno virtual: C:\NetCap\venv
+
+3) Aclaración: el archivo config.ini es el que tiene la configuración de la captura, en el hay que cambiar la linea interface por el nombre exacto que devuelve 'scapy.get_if_list() o tshark -D'.
+
+4) Paso a paso para generar el entorno y sacar la captura:
+1-Abrir powershell como administrador.
+
+2-Escribir 'cd C:\NetCap'
+
+3-'python -m venv venv'
+'.\venv\Scripts\Activate.ps1'
+
+4-'pip install scapy'
+
+5-'python netcap.py --config configs\config.ini'
+
+5) Verificar creación del archivo .pcap:
+'Get-ChildItem -Path C:\NetCap -Filter *.pcap | Select-Object FullName, Length, LastWriteTime'
+
+6) Abrir el archivo con Wireshark:
+opción 1-'Start-Process "C:\Program Files\Wireshark\Wireshark.exe" -ArgumentList "C:\NetCap\captura.pcap"'
+
+opción 2-abrir Wireshark 1-archivos 2-abrir 3-encontrar C:\NetCap\captura.pcap.
+
